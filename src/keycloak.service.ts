@@ -88,8 +88,7 @@ export class KeycloakService {
         if (http.readyState === 4 && http.status === 200) {
           observer.next(JSON.parse(http.responseText));
           observer.complete();
-        } else {
-          // ...
+        } else if (http.readyState === 4 && http.status !== 200) {
           observer.error('error');
         }
       };
