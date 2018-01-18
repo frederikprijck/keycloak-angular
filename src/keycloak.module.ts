@@ -18,11 +18,6 @@ import "rxjs/add/operator/catch";
       provide: APP_INITIALIZER,
       deps: [KeycloakService],
       useFactory: (keycloakService: KeycloakService) => () => {
-        keycloakService.getToken(true)
-            .catch(error => Observable.of(null))
-            .toPromise()
-            .then(x => console.info('success', x), x => console.info('error', x));
-
         return keycloakService.getToken(true)
             .catch(error => Observable.of(null))
             .toPromise();
