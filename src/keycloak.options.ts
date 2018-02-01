@@ -1,6 +1,6 @@
 import { Injectable, InjectionToken } from '@angular/core';
 
-export const KeycloakOptionsToken: InjectionToken<KeycloakOptions> = new InjectionToken('KeycloakOptionsToken');
+export const KeycloakOptionsToken = new InjectionToken('KeycloakOptionsToken');
 
 @Injectable()
 export class KeycloakOptions {
@@ -8,4 +8,10 @@ export class KeycloakOptions {
   realm: string;
   clientId: string;
   localstoragePrefix?: string;
+}
+
+export enum KeycloakErrors {
+  Unauthorized,
+  RefreshTokenExpired,
+  RefreshTokenInvalid
 }

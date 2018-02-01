@@ -16,12 +16,12 @@ export class KeycloakInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return this.keycloakService
-      .getToken()
-      .mergeMap(token => next.handle(request.clone({
+      .getAccessToken()
+      .mergeMap(token => next.handle(token ? request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
         }
-      }))
+      }) : request)
     );
   }
 }
